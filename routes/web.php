@@ -19,29 +19,11 @@ Route::get('/request', function(\Illuminate\Http\Request $request){
 
 });
 
-Route::get('user/{user:name}', function(\App\Models\User $user){
-    dd($user);
-    return $user;
-});
+Route::get('user/{user?}', [\App\Http\Controllers\UserController::class, 'show']
+)->name('user.show');
+Route::get('users/', [\App\Http\Controllers\UserController::class, 'index']
+)->name('user.index');
 
-Route::prefix('usuarios')->group(function(){
-    Route::get('', function(){
-        return 'Usuario';
-    })->name('usuarios');
-    Route::get('/{id}', function(){
-        return 'Mostrar Detalhes';
-    })->name('usuarios.show');
-    Route::get('/{id}/tags', function(){
-        return 'Tags do Usuário';
-    })->name('usuarios.tags');
-
-
-});
-
-Route::get('/a-empresa/{string?}', function ($string = null) {
-    return $string;
-})->name('a-empresa');
-
-Route::get('/users/{paramA}/{paramB}', function ($pa, $pb) {
-    return $pa . '-' . $pb;
+Route::get('/', function () {
+    return view('welcome');
 }); 
