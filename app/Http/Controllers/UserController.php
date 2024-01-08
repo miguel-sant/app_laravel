@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-     public function show(User $user, Request $name){
+     public function show(User $user){
         
-        
+        $user->posts()->create([
+            'title'=>'meu primeiro post',
+            'body'=>'teste',
+    
+        ]);
+        dd($user->posts);
         return view('user', 
         [
             'user' => $user,

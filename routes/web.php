@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BusinessController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ Route::get('/request', function(\Illuminate\Http\Request $request){
         return 'x';
 
 });
-
+Route::get('businesses', [BusinessController::class, 'index']);
 Route::get('user/{user?}', [\App\Http\Controllers\UserController::class, 'show']
 )->name('user.show');
 Route::get('users/', [\App\Http\Controllers\UserController::class, 'index']
